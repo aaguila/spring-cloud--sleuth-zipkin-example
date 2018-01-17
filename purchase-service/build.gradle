@@ -1,0 +1,61 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+		springCloudContractVersion = '1.2.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springCloudContractVersion}"
+		classpath "io.rest-assured:rest-assured:3.0.6"
+		classpath "io.rest-assured:spring-mock-mvc:3.0.6"
+	}
+}
+
+group 'com.qajungle'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" }
+	maven { url "http://repo.spring.io/release" }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE"
+	}
+}
+
+contracts {
+	packageWithBaseClasses = 'com.qajungle.purchase.contracts'
+	//A hack to get around using rootDir in multi-project build
+	contractsDslDir = file("${project.projectDir}/src/test/resources/contracts/")
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-sleuth-core:1.3.0.RELEASE')
+    compile('org.springframework.cloud:spring-cloud-sleuth-zipkin:1.3.0.RELEASE')
+	compile('org.aspectj:aspectjweaver:1.8.9')
+	compile('org.aspectj:aspectjrt:1.8.9')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.modelmapper:modelmapper:0.7.5')
+
+	testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
+	testCompile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
+    testCompile "io.rest-assured:rest-assured:3.0.6"
+    testCompile "io.rest-assured:spring-mock-mvc:3.0.6"
+}

@@ -1,2 +1,2 @@
-rootProject.name = 'spring-cloud-contract-example'
-include 'account-service', 'inventory-service'
+rootProject.name = 'spring-cloud-zipkin-example'
+include 'account-service', 'inventory-service', 'purchase-service'

@@ -1,5 +1,6 @@
 package com.qajungle.services;
 
+import com.qajungle.domain.Item;
 import com.qajungle.domain.SellerInventory;
 import com.qajungle.gateway.AccountGateway;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,10 @@ public class InventoryService {
 
     public SellerInventory getSellerInventory(Long id) {
         return accountGateway.getSellerInventory(id);
+    }
+
+    public Item getInventoryItem(Long id) {
+        return new Item(id, "Explore It!", 1, 20.00);
     }
 
 }

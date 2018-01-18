@@ -47,6 +47,10 @@ contracts {
 }
 
 dependencies {
+	compile('org.springframework.cloud:spring-cloud-sleuth-core:1.3.0.RELEASE')
+	compile('org.springframework.cloud:spring-cloud-sleuth-zipkin:1.3.0.RELEASE')
+	compile('org.aspectj:aspectjweaver:1.8.9')
+	compile('org.aspectj:aspectjrt:1.8.9')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.modelmapper:modelmapper:0.7.5')
 

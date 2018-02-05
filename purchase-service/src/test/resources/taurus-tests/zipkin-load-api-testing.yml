@@ -1,0 +1,23 @@
+execution:
+- scenario: purchase-post-load
+  concurrency: 5
+  throughput: 10
+  ramp-up: 1m
+  hold-for: 5m
+
+scenarios:
+  purchase-post-load:
+    timeout: 5s
+    retrieve-resources: false
+    store-cache: false
+    store-cookie: false
+    default-address: 'http://localhost:8070'
+    headers:
+      Content-Type: application/json
+      Accept: 'application/json'
+    requests:
+    - url: '/purchase'
+      method: POST
+      body:
+        account: 123456789
+        item: 123456789

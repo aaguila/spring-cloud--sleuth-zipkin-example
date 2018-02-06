@@ -3,7 +3,6 @@
 # Spring-cloud-sleuth-zipkin-example
 
 Example of zipkin using spring cloud sleuth
-[In progress]
 
 ### Blog post url
-[In progress]
+http://qajungle.com/pruebas-de-rendimiento-y-rastreo-mediante-spring-cloud-sleuth-y-zipkin/
